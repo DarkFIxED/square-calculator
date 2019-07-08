@@ -30,8 +30,8 @@ namespace SquareCalculator.Figures
         {
             var sideLengthsList = sideLengths.ToList();
 
-            AssertIsCorrectLengthsCount(sideLengthsList);
-            AssertIsCorrectTriangle(sideLengthsList);
+            AssertCorrectSidesAmount(sideLengthsList);
+            AssertCorrectTriangle(sideLengthsList);
 
             var (vertex1, vertex2, vertex3) = CalculateVertexesCoordinates(sideLengthsList);
             return new Triangle(vertex1, vertex2, vertex3);
@@ -53,7 +53,7 @@ namespace SquareCalculator.Figures
             };
             var segmentsLengths = lineSegments.Select(x => x.Length).ToList();
 
-            AssertIsCorrectTriangle(segmentsLengths);
+            AssertCorrectTriangle(segmentsLengths);
 
             SegmentsList.AddRange(lineSegments);
             IsRightTriangle = CheckIsRightTriangle(segmentsLengths);
@@ -92,7 +92,7 @@ namespace SquareCalculator.Figures
                     double.Epsilon);
         }
 
-        private static void AssertIsCorrectTriangle(List<double> segmentsLengths)
+        private static void AssertCorrectTriangle(List<double> segmentsLengths)
         {
             AssertSegmentLengthIsCorrect(segmentsLengths[0], segmentsLengths[1], segmentsLengths[2]);
             AssertSegmentLengthIsCorrect(segmentsLengths[1], segmentsLengths[0], segmentsLengths[2]);
@@ -106,7 +106,7 @@ namespace SquareCalculator.Figures
                 throw new ArgumentException(Exceptions.InvalidTriangleCoordinates);
         }
 
-        private static void AssertIsCorrectLengthsCount(List<double> sideLengthsList)
+        private static void AssertCorrectSidesAmount(List<double> sideLengthsList)
         {
             if (sideLengthsList.Count != RequiredSidesCount)
                 throw new ArgumentException(Exceptions.TriangleCanContainsOnly3Sides);

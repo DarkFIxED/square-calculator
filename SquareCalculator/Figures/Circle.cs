@@ -15,13 +15,13 @@ namespace SquareCalculator.Figures
         /// <param name="radius">Circle radius.</param>
         public Circle(double radius)
         {
-            AssertIsCorrectCircle(radius);
+            AssertRadiusIsGreaterThanZero(radius);
             SegmentsList.Add(new CircleContourSegment(radius));
         }
 
-        private void AssertIsCorrectCircle(double radius)
+        private void AssertRadiusIsGreaterThanZero(double radius)
         {
-            if (radius < 0)
+            if (radius <= 0)
                 throw new ArgumentException(Exceptions.RadiusMustBeGreaterThanZero);
         }
     }
